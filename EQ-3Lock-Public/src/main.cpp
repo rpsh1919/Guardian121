@@ -9,6 +9,9 @@
 #define USER_ID 2
 
 IPAddress ip(000, 000, 000, 000); // write your own
+IPAddress gw(192, 168, 0, 1); // write your own
+IPAddress sn(255, 255, 255, 0); // write your own
+IPAddress dns(192, 168, 0, 1); // write your own
 char ssid[] = "xxxxxxxx"; // write your own
 char pass[] = "xxxxxxxx"; // write your own
 int statusWiFi = WL_IDLE_STATUS;
@@ -27,9 +30,6 @@ int status = 0;
 
 
 void Connect() {
-  IPAddress gw(192, 168, 0, 1); // write your own
-  IPAddress sn(255, 255, 255, 0); // write your own
-  IPAddress dns(192, 168, 0, 1); // write your own
   WiFi.config(ip, gw, sn, dns);
   while ( statusWiFi != 6) {
     Serial.println("Connecting..."); 
@@ -148,7 +148,7 @@ void setup() {
 
 void loop() {
   
-   if ((millis() - LastUpShort) > 120000) {
+   if ((millis() - LastUpShort) > 60000) {
      if (status == 2) { // unlocked
         do_lock = true;
      }
